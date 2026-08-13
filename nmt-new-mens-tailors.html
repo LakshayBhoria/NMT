@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NMT — New Men's Tailors | Bahalgarh, Sonipat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Public+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0d0f12;
+    --ink-rgb:13,15,18;
+    --charcoal:#1b2027;
+    --charcoal-soft:#242b34;
+    --chalk:#f2efe9;
+    --chalk-dim:#c9c4b8;
+    --brass:#b08d57;
+    --brass-bright:#d9b47c;
+    --burgundy:#6e2c34;
+    --pinstripe: rgba(242,239,233,0.06);
+    --line: rgba(242,239,233,0.14);
+    --ease: cubic-bezier(.22,.61,.36,1);
+    --theme-transition: background 0.4s var(--ease), color 0.4s var(--ease), border-color 0.4s var(--ease);
+  }
+
+  html[data-theme="light"]{
+    --ink:#f5f1e8;
+    --ink-rgb:245,241,232;
+    --charcoal:#ffffff;
+    --charcoal-soft:#ece6d8;
+    --chalk:#181510;
+    --chalk-dim:#5c5548;
+    --brass:#9c7a44;
+    --brass-bright:#7a5d2e;
+    --pinstripe: rgba(24,21,16,0.045);
+    --line: rgba(24,21,16,0.13);
+  }
+
+  body, header, .founder-card, .service-card, .offer-card, .swatch, .garment, .review-card,
+  .field input, .field select, .field textarea, .filter-btn, .lightbox-inner, .about-photo img, .photo-band img{
+    transition: var(--theme-transition);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--chalk);
+    font-family:'Public Sans', sans-serif;
+    font-weight:300;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  ul{list-style:none;}
+  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:500; letter-spacing:-0.01em; }
+  .mono{ font-family:'JetBrains Mono', monospace; letter-spacing:0.04em; }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--brass);
+  }
+  .wrap{ max-width:1240px; margin:0 auto; padding:0 6vw; }
+
+  .pinstripes{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image: repeating-linear-gradient(90deg, var(--pinstripe) 0px, var(--pinstripe) 1px, transparent 1px, transparent 64px);
+    opacity:0.7;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:1.5rem 6vw; display:flex; align-items:center; justify-content:space-between;
+    transition: background 0.4s var(--ease), padding 0.4s var(--ease), border-color 0.4s var(--ease);
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    background:rgba(var(--ink-rgb),0.9); backdrop-filter: blur(10px);
+    padding:1rem 6vw; border-bottom:1px solid var(--line);
+  }
+  .logo-mark{
+    display:flex; align-items:baseline; gap:0.7rem;
+  }
+  .logo-mark .initials{
+    font-family:'Fraunces', serif; font-weight:700; font-size:1.5rem; letter-spacing:-0.03em; color:var(--chalk);
+  }
+  .logo-mark .initials em{ font-style:italic; color:var(--brass-bright); font-weight:500; }
+  .logo-mark .tagline{
+    font-family:'JetBrains Mono', monospace; font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--chalk-dim);
+    border-left:1px solid var(--line); padding-left:0.7rem; line-height:1.3;
+  }
+
+  nav ul{ display:flex; gap:2.3rem; }
+  nav a{
+    font-size:0.8rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--chalk-dim);
+    position:relative; padding-bottom:4px; transition:color 0.3s;
+  }
+  nav a::after{
+    content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--brass);
+    transition:width 0.35s var(--ease);
+  }
+  nav a:hover{ color:var(--chalk); }
+  nav a:hover::after{ width:100%; }
+  .nav-cta{
+    border:1px solid var(--brass); color:var(--brass-bright) !important; padding:0.55rem 1.3rem; font-size:0.72rem !important;
+  }
+  .nav-cta::after{ display:none; }
+  .nav-cta:hover{ background:var(--brass); color:var(--ink) !important; }
+
+  .menu-toggle{
+    display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px;
+  }
+  .menu-toggle span{ width:22px; height:1px; background:var(--chalk); }
+
+  nav ul.nav-open{
+    position:fixed; top:64px; left:0; right:0; background:rgba(var(--ink-rgb),0.97);
+    flex-direction:column; padding:2rem 6vw; gap:1.6rem; border-bottom:1px solid var(--line); display:flex;
+  }
+
+  /* ---------- THEME TOGGLE ---------- */
+  .theme-toggle{
+    display:flex; align-items:center; justify-content:center; width:38px; height:38px;
+    border:1px solid var(--line); background:none; cursor:pointer; color:var(--chalk-dim);
+    transition:color 0.3s, border-color 0.3s, transform 0.4s var(--ease); margin-left:1.6rem; flex-shrink:0;
+  }
+  .theme-toggle:hover{ color:var(--brass-bright); border-color:var(--brass); }
+  .theme-toggle svg{ width:16px; height:16px; }
+  .theme-toggle .icon-sun{ display:none; }
+  html[data-theme="light"] .theme-toggle .icon-moon{ display:none; }
+  html[data-theme="light"] .theme-toggle .icon-sun{ display:block; }
+  .nav-inner{ display:flex; align-items:center; }
+
+  /* ---------- HERO ---------- */
+  .hero{ position:relative; min-height:100vh; display:flex; align-items:center; padding:8rem 6vw 4rem; z-index:1; overflow:hidden; }
+  .hero-photo{
+    position:absolute; inset:0; z-index:-1;
+    background-image: linear-gradient(100deg, rgba(13,15,18,0.97) 0%, rgba(13,15,18,0.88) 32%, rgba(13,15,18,0.55) 62%, rgba(13,15,18,0.82) 100%), url('https://images.unsplash.com/photo-1618886614638-80e3c103d31a?fm=jpg&q=80&w=2200&auto=format&fit=crop');
+    background-size:cover; background-position:center 20%;
+  }
+  .hero-grid{ width:100%; max-width:1240px; margin:0 auto; display:grid; grid-template-columns:1.1fr 0.9fr; gap:3rem; align-items:center; }
+  .hero p.eyebrow{ margin-bottom:0.3rem; }
+  .hero h1{ font-size:clamp(2.4rem, 5vw, 4.2rem); line-height:1.05; font-weight:500; }
+  .hero h1 em{ font-style:italic; font-weight:400; color:var(--brass-bright); }
+  .hero-sub{ margin-top:1.6rem; max-width:36ch; color:var(--chalk-dim); font-size:1.02rem; }
+  .hero-actions{ margin-top:2.6rem; display:flex; align-items:center; gap:2rem; flex-wrap:wrap; }
+  .btn-primary{
+    background:var(--brass); color:var(--ink); padding:0.95rem 2.1rem; font-size:0.82rem; letter-spacing:0.08em;
+    text-transform:uppercase; font-weight:500; border:1px solid var(--brass);
+    transition:background 0.3s, color 0.3s, transform 0.3s; display:inline-block;
+  }
+  .btn-primary:hover{ background:transparent; color:var(--brass-bright); transform:translateY(-2px); }
+  .btn-ghost{
+    font-size:0.82rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--chalk-dim);
+    border-bottom:1px solid var(--line); padding-bottom:3px; transition:color 0.3s, border-color 0.3s;
+  }
+  .btn-ghost:hover{ color:var(--chalk); border-color:var(--brass); }
+
+  .hero-meta{
+    margin-top:2.2rem; display:flex; gap:2.2rem; flex-wrap:wrap;
+  }
+  .hero-meta div .mono{ display:block; font-size:0.66rem; color:var(--brass); margin-bottom:0.25rem; }
+  .hero-meta div p{ font-size:0.85rem; color:var(--chalk-dim); }
+
+  .coat-carousel{
+    position:relative; aspect-ratio:4/5; background:var(--charcoal); border:1px solid var(--line);
+  }
+  .coat-slide{
+    position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:2.4rem; opacity:0; transition:opacity 1.4s ease;
+  }
+  .coat-slide.active{ opacity:1; }
+  .coat-slide svg{ width:56%; height:auto; }
+  .coat-label{
+    margin-top:1.4rem; font-family:'JetBrains Mono', monospace; font-size:0.68rem; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--brass-bright);
+  }
+  .pattern-stroke{
+    fill:none; stroke:var(--chalk); stroke-width:1.1; stroke-linecap:round; stroke-linejoin:round;
+  }
+  .pattern-stroke.accent{ stroke:var(--brass); }
+  .tick{
+    font-family:'JetBrains Mono', monospace; font-size:11px; fill:var(--chalk-dim);
+  }
+
+  .reveal{ opacity:0; transition:opacity 0.5s ease; }
+  .reveal.in{ opacity:1; }
+
+  section{ position:relative; z-index:1; padding:7rem 0; }
+  .section-head{ max-width:640px; margin-bottom:4rem; }
+  .section-head h2{ font-size:clamp(2rem, 3.4vw, 2.8rem); margin-top:0.7rem; font-weight:500; }
+  .section-head p{ color:var(--chalk-dim); margin-top:1.1rem; max-width:52ch; }
+
+  /* ---------- ABOUT / FOUNDER ---------- */
+  .about{ border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .about .wrap{ display:grid; grid-template-columns:0.7fr 1.3fr; gap:3.5rem; align-items:center; }
+  .founder-card{
+    border:1px solid var(--line); padding:2.2rem; background:var(--charcoal);
+  }
+  .about-photo{
+    aspect-ratio:3/3.6; overflow:hidden; border:1px solid var(--line); margin-top:1.4rem;
+  }
+  .about-photo img{ width:100%; height:100%; object-fit:cover; filter:grayscale(0.25) contrast(1.05); transition:filter 0.4s; }
+  .about-photo:hover img{ filter:grayscale(0); }
+  .founder-card .initial-badge{
+    width:56px; height:56px; border:1px solid var(--brass); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-family:'Fraunces', serif;
+    font-size:1.4rem; color:var(--brass-bright); margin-bottom:1.2rem;
+  }
+  .founder-card h3{ font-size:1.25rem; }
+  .founder-card .mono{ display:block; font-size:0.68rem; color:var(--brass); margin-top:0.4rem; letter-spacing:0.1em; }
+  .about-copy p{ color:var(--chalk-dim); }
+  .about-copy p + p{ margin-top:1rem; }
+  .about-stats{ display:flex; gap:2.5rem; margin-top:2.2rem; flex-wrap:wrap; }
+  .about-stats div .num{ font-family:'Fraunces', serif; font-size:2.1rem; color:var(--brass-bright); font-weight:500; }
+  .about-stats div .lbl{ font-family:'JetBrains Mono', monospace; font-size:0.64rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--chalk-dim); margin-top:0.3rem; }
+
+  /* ---------- SERVICES ---------- */
+  .services-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .service-card{ background:var(--ink); padding:2.4rem 2rem; transition:background 0.4s; }
+  .service-card:hover{ background:var(--charcoal); }
+  .service-card .icon{ font-size:1.6rem; }
+  .service-card h3{ font-size:1.08rem; margin-top:1.1rem; margin-bottom:1rem; }
+  .service-card ul li{ font-size:0.85rem; color:var(--chalk-dim); padding:0.35rem 0; border-top:1px solid var(--line); }
+  .service-card ul li:first-child{ border-top:none; }
+
+  /* ---------- PROCESS ---------- */
+  .process-track{ position:relative; margin-top:1rem; }
+  .process-line{ position:absolute; top:1.05rem; left:0; height:1px; background:var(--line); width:100%; }
+  .process-line-fill{ position:absolute; top:0; left:0; height:1px; width:100%; background:var(--brass); }
+  .process-steps{ display:grid; grid-template-columns:repeat(5,1fr); gap:1.5rem; }
+  .step{ position:relative; padding-top:2.6rem; }
+  .step-num{ position:absolute; top:0; left:0; width:9px; height:9px; border-radius:50%; background:var(--ink); border:1px solid var(--brass); }
+  .step h3{ font-size:1.1rem; font-weight:500; margin-bottom:0.6rem; }
+  .step .mono{ display:block; font-size:0.68rem; color:var(--brass); margin-bottom:0.8rem; }
+  .step p{ font-size:0.88rem; color:var(--chalk-dim); }
+
+  /* ---------- OFFERS ---------- */
+  .offers{ background:var(--charcoal); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .offers-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+  .offer-card{
+    border:1px solid var(--line); padding:2.2rem; position:relative; overflow:hidden;
+  }
+  .offer-card::before{
+    content:''; position:absolute; top:0; left:0; width:100%; height:2px; background:var(--brass);
+  }
+  .offer-card .mono{ font-size:0.64rem; color:var(--brass); letter-spacing:0.1em; }
+  .offer-card h3{ font-size:1.2rem; margin:0.8rem 0 0.8rem; }
+  .offer-card p{ color:var(--chalk-dim); font-size:0.9rem; }
+
+  /* ---------- FABRICS ---------- */
+  .fabrics{ background:var(--ink); }
+  .fabric-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .swatch{ position:relative; aspect-ratio:1/1.1; background:var(--charcoal-soft); overflow:hidden; cursor:pointer; }
+  .swatch-pattern{ position:absolute; inset:0; }
+  .p-pinstripe{ background-image: repeating-linear-gradient(115deg, #232a33 0 2px, #2c343f 2px 3px, transparent 3px 22px); }
+  .p-herringbone{ background-image: repeating-linear-gradient(45deg, #2a2118 0 6px, transparent 6px 12px), repeating-linear-gradient(-45deg, #2a2118 0 6px, transparent 6px 12px); background-size:24px 24px; background-color:#332920; }
+  .p-houndstooth{ background-color:#20232a; background-image: radial-gradient(#3a3f4a 1.5px, transparent 1.6px); background-size:14px 14px; }
+  .p-brocade{ background: repeating-radial-gradient(circle at 10px 10px, #3a2b2e 0 3px, transparent 3px 18px), linear-gradient(160deg,#2c1c1f,#1c1012); }
+  .swatch-info{
+    position:absolute; left:0; right:0; bottom:0; padding:1.1rem 1.2rem;
+    background:linear-gradient(0deg, rgba(13,15,18,0.92), transparent);
+    transform:translateY(8px); opacity:0; transition:opacity 0.4s, transform 0.4s;
+  }
+  .swatch:hover .swatch-info{ opacity:1; transform:translateY(0); }
+  .swatch-info h4{ font-family:'Fraunces', serif; font-size:1rem; font-weight:500; }
+  .swatch-info .mono{ font-size:0.65rem; color:var(--brass-bright); margin-top:0.3rem; }
+
+  /* ---------- GALLERY PHOTO BAND ---------- */
+  .photo-band{ display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:2px; background:var(--line); border:1px solid var(--line); margin-bottom:4rem; }
+  .photo-band figure{ position:relative; margin:0; overflow:hidden; aspect-ratio:4/5; background:var(--charcoal); }
+  .photo-band img{ width:100%; height:100%; object-fit:cover; filter:grayscale(0.15) contrast(1.05); transition:transform 0.6s var(--ease), filter 0.4s; }
+  .photo-band figure:hover img{ transform:scale(1.04); filter:grayscale(0); }
+  .photo-band figcaption{
+    position:absolute; left:0; right:0; bottom:0; padding:1.1rem 1.3rem;
+    background:linear-gradient(0deg, rgba(13,15,18,0.9), transparent);
+    font-family:'JetBrains Mono', monospace; font-size:0.66rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--brass-bright);
+  }
+
+  /* ---------- GALLERY ---------- */
+  .gallery-filters{ display:flex; gap:0.8rem; flex-wrap:wrap; margin-bottom:2.5rem; }
+  .filter-btn{
+    background:none; border:1px solid var(--line); color:var(--chalk-dim); font-family:'JetBrains Mono', monospace;
+    font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase; padding:0.6rem 1.2rem; cursor:pointer;
+    transition:border-color 0.3s, color 0.3s;
+  }
+  .filter-btn:hover{ color:var(--chalk); border-color:var(--chalk-dim); }
+  .filter-btn.active{ border-color:var(--brass); color:var(--brass-bright); }
+  .gallery-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--line); border:1px solid var(--line); }
+  .garment{ background:var(--charcoal); padding:2.4rem 1.6rem 1.8rem; display:flex; flex-direction:column; align-items:center; gap:1.2rem; cursor:pointer; }
+  .garment.hidden{ display:none; }
+  .garment svg{ width:64%; height:auto; }
+  .garment-line{ fill:none; stroke:var(--chalk-dim); stroke-width:1; transition:stroke 0.4s; }
+  .garment:hover .garment-line{ stroke:var(--brass-bright); }
+  .garment-cap{ text-align:center; }
+  .garment-cap h4{ font-family:'Fraunces', serif; font-weight:500; font-size:1.02rem; }
+  .garment-cap .mono{ font-size:0.65rem; color:var(--chalk-dim); margin-top:0.35rem; display:block; }
+  .garment-view{
+    margin-top:0.2rem; font-family:'JetBrains Mono', monospace; font-size:0.6rem; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--brass); opacity:0; transition:opacity 0.3s;
+  }
+  .garment:hover .garment-view{ opacity:1; }
+
+  /* Lightbox */
+  .lightbox{
+    position:fixed; inset:0; z-index:200; background:rgba(13,15,18,0.92); backdrop-filter:blur(6px);
+    display:flex; align-items:center; justify-content:center; padding:6vw;
+    opacity:0; pointer-events:none; transition:opacity 0.3s ease;
+  }
+  .lightbox.open{ opacity:1; pointer-events:auto; }
+  .lightbox-inner{
+    position:relative; background:var(--charcoal); border:1px solid var(--line); padding:3rem 2.5rem 2.2rem;
+    max-width:400px; width:100%; text-align:center;
+  }
+  .lightbox-close{
+    position:absolute; top:0.8rem; right:1rem; background:none; border:none; color:var(--chalk-dim);
+    font-size:1.6rem; cursor:pointer; line-height:1; transition:color 0.3s;
+  }
+  .lightbox-close:hover{ color:var(--brass-bright); }
+  .lightbox-art{ width:100%; }
+  .lightbox-art svg{ width:60%; height:auto; margin:0 auto; }
+  .lightbox-cap{ margin-top:1.4rem; }
+  .lightbox-cap h3{ font-size:1.2rem; }
+  .lightbox-cap .mono{ display:block; margin-top:0.4rem; font-size:0.68rem; color:var(--brass); }
+
+  /* ---------- REVIEWS ---------- */
+  .reviews{ border-top:1px solid var(--line); }
+  .review-summary{
+    display:flex; align-items:center; gap:1.4rem; padding:1.6rem 0 2.6rem; border-bottom:1px solid var(--line); margin-bottom:2.6rem;
+  }
+  .review-score .score-num{ font-family:'Fraunces', serif; font-size:2.4rem; color:var(--brass-bright); font-weight:500; }
+  .stars{ color:var(--brass); letter-spacing:2px; font-size:1rem; }
+  .review-summary .mono{ font-size:0.68rem; color:var(--chalk-dim); letter-spacing:0.08em; display:block; margin-top:0.3rem; }
+  .review-list{ display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; margin-bottom:3.5rem; }
+  .review-card{ border:1px solid var(--line); padding:1.8rem; background:var(--charcoal); }
+  .review-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:0.9rem; flex-wrap:wrap; gap:0.4rem; }
+  .review-head .mono{ font-size:0.66rem; color:var(--chalk-dim); letter-spacing:0.06em; }
+  .review-card p{ font-size:0.9rem; color:var(--chalk); line-height:1.7; }
+  .review-form-wrap{ max-width:520px; }
+  .review-form-wrap h3{ font-size:1.3rem; margin-bottom:1.6rem; }
+  .star-select{ display:flex; gap:0.4rem; font-size:1.4rem; color:var(--line); cursor:pointer; }
+  .star-select span{ transition:color 0.2s; }
+  .star-select span.filled{ color:var(--brass); }
+
+  /* ---------- LOCATION ---------- */
+  .location{ background:var(--charcoal); border-top:1px solid var(--line); }
+  .location .wrap{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:3.5rem; align-items:stretch; }
+  .location-details dt{ font-family:'JetBrains Mono', monospace; font-size:0.68rem; color:var(--brass); letter-spacing:0.12em; text-transform:uppercase; margin-top:1.4rem; }
+  .location-details dd{ margin-top:0.3rem; color:var(--chalk-dim); }
+  .location-details dd a{ color:var(--brass-bright); border-bottom:1px solid var(--brass); }
+  .map-frame{ border:1px solid var(--line); min-height:340px; overflow:hidden; filter:grayscale(0.4) contrast(1.05); }
+  .map-frame iframe{ width:100%; height:100%; min-height:340px; border:0; display:block; }
+
+  /* ---------- BOOK / CONTACT ---------- */
+  .book{ background:var(--ink); border-top:1px solid var(--line); }
+  .book .wrap{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:4rem; }
+  .book h2{ font-size:clamp(2rem,3.6vw,2.9rem); }
+  form{ display:flex; flex-direction:column; gap:1.4rem; }
+  .field{ display:flex; flex-direction:column; gap:0.5rem; }
+  .field label{ font-family:'JetBrains Mono', monospace; font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--chalk-dim); }
+  .field input, .field select, .field textarea{
+    background:transparent; border:none; border-bottom:1px solid var(--line); color:var(--chalk);
+    font-family:'Public Sans', sans-serif; font-size:0.98rem; padding:0.6rem 0.1rem; transition:border-color 0.3s;
+  }
+  .field select option{ background:var(--charcoal); }
+  .field input:focus, .field select:focus, .field textarea:focus{ outline:none; border-color:var(--brass); }
+  .field textarea{ resize:vertical; min-height:70px; }
+  .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:1.4rem; }
+  .btn-submit{
+    align-self:flex-start; margin-top:0.8rem; background:var(--brass); color:var(--ink); border:1px solid var(--brass);
+    padding:0.95rem 2.4rem; font-size:0.82rem; letter-spacing:0.08em; text-transform:uppercase; font-weight:500;
+    cursor:pointer; transition:background 0.3s, color 0.3s, transform 0.3s;
+  }
+  .btn-submit:hover{ background:transparent; color:var(--brass-bright); transform:translateY(-2px); }
+  .form-confirm{ display:none; padding:1rem 0; color:var(--brass-bright); font-family:'JetBrains Mono', monospace; font-size:0.85rem; }
+  .form-confirm.show{ display:block; }
+  .call-strip{
+    margin-top:2rem; display:flex; align-items:center; gap:1rem; padding:1.1rem 1.3rem;
+    border:1px solid var(--brass); width:fit-content;
+  }
+  .call-strip a{ font-family:'JetBrains Mono', monospace; font-size:0.92rem; color:var(--brass-bright); }
+  .call-strip .mono-lbl{ font-size:0.62rem; color:var(--chalk-dim); letter-spacing:0.1em; text-transform:uppercase; display:block; margin-bottom:0.2rem; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ padding:3rem 6vw; border-top:1px solid var(--line); }
+  .footer-grid{ display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; gap:2rem; max-width:1240px; margin:0 auto; }
+  .footer-grid h4{ font-family:'JetBrains Mono', monospace; font-size:0.66rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--brass); margin-bottom:1rem; }
+  .footer-grid p, .footer-grid a{ font-size:0.82rem; color:var(--chalk-dim); display:block; margin-bottom:0.5rem; transition:color 0.3s; }
+  .footer-grid a:hover{ color:var(--brass-bright); }
+  .footer-social{ display:flex; gap:1rem; margin-top:0.8rem; }
+  .footer-social a{
+    width:34px; height:34px; border:1px solid var(--line); border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono', monospace; font-size:0.65rem;
+  }
+  .footer-social a:hover{ border-color:var(--brass); color:var(--brass-bright); }
+  .footer-bottom{
+    max-width:1240px; margin:2.5rem auto 0; padding-top:1.5rem; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+  }
+  .footer-bottom .mono{ font-size:0.7rem; color:var(--chalk-dim); }
+
+  /* ---------- FLOATING CONTACT ACTIONS ---------- */
+  .float-actions{
+    position:fixed; right:1.4rem; bottom:1.4rem; z-index:150;
+    display:flex; flex-direction:column; gap:0.7rem;
+  }
+  .float-btn{
+    width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 6px 18px rgba(0,0,0,0.35); transition:transform 0.3s var(--ease), background 0.3s;
+    border:1px solid var(--line);
+  }
+  .float-btn:hover{ transform:translateY(-3px) scale(1.05); }
+  .float-btn svg{ width:22px; height:22px; }
+  .float-call{ background:var(--brass); color:var(--ink); }
+  .float-call:hover{ background:var(--brass-bright); }
+  .float-whatsapp{ background:#25D366; color:#0d0f12; }
+  .float-whatsapp:hover{ background:#2fe375; }
+  @media (max-width:560px){
+    .float-actions{ right:1rem; bottom:1rem; }
+    .float-btn{ width:46px; height:46px; }
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 980px){
+    nav ul{ display:none; }
+    .menu-toggle{ display:flex; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .coat-carousel{ order:-1; max-width:300px; margin:0 auto; }
+    .about .wrap{ grid-template-columns:1fr; }
+    .services-grid{ grid-template-columns:1fr 1fr; }
+    .process-steps{ grid-template-columns:1fr 1fr; row-gap:2.4rem; }
+    .process-line, .process-line-fill{ display:none; }
+    .offers-grid{ grid-template-columns:1fr; }
+    .fabric-grid{ grid-template-columns:1fr 1fr; }
+    .gallery-grid{ grid-template-columns:1fr 1fr; }
+    .photo-band{ grid-template-columns:1fr 1fr; }
+    .photo-band figure:first-child{ grid-column:1 / -1; }
+    .review-list{ grid-template-columns:1fr; }
+    .test-grid{ grid-template-columns:1fr; gap:2.4rem; }
+    .location .wrap{ grid-template-columns:1fr; }
+    .book .wrap{ grid-template-columns:1fr; }
+    .form-row{ grid-template-columns:1fr; }
+    .footer-grid{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width: 560px){
+    .process-steps, .services-grid, .fabric-grid, .gallery-grid, .footer-grid{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="pinstripes"></div>
+
+<header id="siteHeader">
+  <div class="logo-mark">
+    <span class="initials">N<em>M</em>T</span>
+    <span class="tagline">New Men's<br>Tailors · Est. 1998</span>
+  </div>
+  <div class="nav-inner">
+    <nav>
+      <ul id="navList">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#location">Location</a></li>
+        <li><a href="#book" class="nav-cta">Book a Fitting</a></li>
+      </ul>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+    </button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-photo" aria-hidden="true"></div>
+  <div class="hero-grid">
+    <div>
+      <p class="eyebrow">Bahalgarh · Sonipat · Haryana</p>
+      <h1>Trust, quality,<br><em>excellence.</em></h1>
+      <p class="hero-sub">Premium men's tailoring since 1998 — coat pant suits, sherwanis, blazers and everyday formal wear, cut and stitched by hand in our Bahalgarh workroom.</p>
+      <div class="hero-actions">
+        <a href="#book" class="btn-primary">Book a Fitting</a>
+        <a href="#services" class="btn-ghost">See our services</a>
+      </div>
+      <div class="hero-meta">
+        <div><span class="mono">SINCE</span><p>1998 — 27 years of craft</p></div>
+        <div><span class="mono">OPEN</span><p>Mon – Sun, 8:00AM – 9:30PM</p></div>
+        <div><span class="mono">FOUNDER</span><p>Rattan Singh, CEO</p></div>
+      </div>
+    </div>
+
+    <div class="coat-carousel" id="coatCarousel">
+      <div class="coat-slide active">
+        <svg viewBox="0 0 200 340" fill="none">
+          <path class="pattern-stroke" d="M100,22 L72,30 L64,70 L80,66 L100,90 L120,66 L136,70 L128,30 Z"/>
+          <path class="pattern-stroke" d="M64,70 L60,150 L140,150 L136,70"/>
+          <path class="pattern-stroke" d="M64,72 L40,90 L36,150 L52,150 L60,95"/>
+          <path class="pattern-stroke" d="M136,72 L160,90 L164,150 L148,150 L140,95"/>
+          <circle class="pattern-stroke accent" cx="100" cy="100" r="2.5"/>
+          <circle class="pattern-stroke accent" cx="100" cy="118" r="2.5"/>
+          <line class="pattern-stroke accent" x1="78" y1="78" x2="92" y2="74"/>
+          <path class="pattern-stroke" d="M66,128 L84,124 L86,132 L68,136 Z"/>
+          <path class="pattern-stroke" d="M134,128 L116,124 L114,132 L132,136 Z"/>
+          <line class="pattern-stroke accent" x1="60" y1="152" x2="140" y2="152"/>
+          <path class="pattern-stroke" d="M62,152 L58,320 L82,320 L92,190 L100,190 L108,320 L142,320 L138,152"/>
+          <line class="pattern-stroke accent" x1="72" y1="160" x2="66" y2="316" stroke-dasharray="3 5"/>
+          <line class="pattern-stroke accent" x1="128" y1="160" x2="134" y2="316" stroke-dasharray="3 5"/>
+          <line class="pattern-stroke" x1="58" y1="320" x2="82" y2="320"/>
+          <line class="pattern-stroke" x1="108" y1="320" x2="142" y2="320"/>
+        </svg>
+        <span class="coat-label">Coat Pant Suit — Single Breasted</span>
+      </div>
+      <div class="coat-slide">
+        <svg viewBox="0 0 200 340" fill="none">
+          <path class="pattern-stroke" d="M100,22 L68,26 L58,66 L78,58 L100,88 L122,58 L142,66 L132,26 Z"/>
+          <path class="pattern-stroke" d="M58,68 L54,150 L146,150 L142,68"/>
+          <path class="pattern-stroke" d="M58,70 L34,88 L30,150 L46,150 L54,95"/>
+          <path class="pattern-stroke" d="M142,70 L166,88 L170,150 L154,150 L146,95"/>
+          <circle class="pattern-stroke accent" cx="88" cy="96" r="2.5"/>
+          <circle class="pattern-stroke accent" cx="112" cy="96" r="2.5"/>
+          <circle class="pattern-stroke accent" cx="88" cy="116" r="2.5"/>
+          <circle class="pattern-stroke accent" cx="112" cy="116" r="2.5"/>
+          <path class="pattern-stroke" d="M62,128 L82,124 L84,132 L64,136 Z"/>
+          <path class="pattern-stroke" d="M138,128 L118,124 L116,132 L136,136 Z"/>
+          <line class="pattern-stroke accent" x1="54" y1="152" x2="146" y2="152"/>
+          <path class="pattern-stroke" d="M56,152 L52,320 L78,320 L90,190 L110,190 L122,320 L148,320 L144,152"/>
+          <line class="pattern-stroke accent" x1="68" y1="160" x2="62" y2="316" stroke-dasharray="3 5"/>
+          <line class="pattern-stroke accent" x1="132" y1="160" x2="138" y2="316" stroke-dasharray="3 5"/>
+          <line class="pattern-stroke" x1="52" y1="320" x2="78" y2="320"/>
+          <line class="pattern-stroke" x1="122" y1="320" x2="148" y2="320"/>
+        </svg>
+        <span class="coat-label">Coat Pant Suit — Double Breasted</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT / FOUNDER ================= -->
+<section class="about" id="about">
+  <div class="wrap reveal">
+    <div class="founder-card">
+      <div class="initial-badge">RS</div>
+      <h3>Rattan Singh</h3>
+      <span class="mono">CEO &amp; FOUNDER, NMT</span>
+      <div class="about-photo">
+        <img src="https://images.unsplash.com/photo-1762417421173-6a9766a5b41d?fm=jpg&q=80&w=1400&auto=format&fit=crop" alt="A finished tailored suit on display at the NMT workroom">
+      </div>
+    </div>
+    <div class="about-copy">
+      <p class="eyebrow">About Us</p>
+      <h2 style="margin-top:0.6rem;">Since 1998, we don't just sew clothes.</h2>
+      <p style="margin-top:1.2rem;">New Men's Tailors has been a trusted name in men's fashion since 1998, offering exceptional craftsmanship and timeless style. We specialise in custom tailoring for every occasion — from weddings and formal events to everyday elegance.</p>
+      <p>With a deep understanding of traditional technique and a sharp eye for modern trends, we create garments that reflect confidence, character, and class.</p>
+      <div class="about-stats">
+        <div><div class="num">27+</div><div class="lbl">Years of Craft</div></div>
+        <div><div class="num">5</div><div class="lbl">Service Categories</div></div>
+        <div><div class="num">1</div><div class="lbl">Workroom, Bahalgarh</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Our Services</p>
+      <h2>A full range of<br>custom stitching.</h2>
+      <p>Over two decades of experience, blending traditional technique with modern trends to deliver impeccable fits and premium finishes.</p>
+    </div>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <span class="icon">👔</span>
+      <h3>Men's Tailoring</h3>
+      <ul>
+        <li>Coat Pant Suits (2 &amp; 3-piece)</li>
+        <li>Blazers &amp; Waistcoats</li>
+        <li>Shirts &amp; Trousers</li>
+        <li>Tuxedos &amp; Dinner Jackets</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <span class="icon">👑</span>
+      <h3>Wedding Attire</h3>
+      <ul>
+        <li>Sherwanis</li>
+        <li>Indo-Western Suits</li>
+        <li>Achkans</li>
+        <li>Kurta Pajamas &amp; Bandhgalas</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <span class="icon">🧵</span>
+      <h3>Casual Wear</h3>
+      <ul>
+        <li>Casual Shirts</li>
+        <li>Chinos &amp; Jeans Alteration</li>
+        <li>Shorts &amp; Casual Trousers</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <span class="icon">🧥</span>
+      <h3>Ethnic &amp; Festive</h3>
+      <ul>
+        <li>Kurta Sets with Jackets</li>
+        <li>Pathani Suits</li>
+        <li>Custom Accessories</li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:1px;">
+    <div class="service-card reveal" style="border:1px solid var(--line); margin-top:2rem;">
+      <span class="icon">🔧</span>
+      <h3>Alteration &amp; Custom Fit Services</h3>
+      <ul style="columns:2;">
+        <li>Fit Adjustments</li>
+        <li>Sleeve &amp; Length Alterations</li>
+        <li>Waist, Shoulder &amp; Neckline Refinement</li>
+        <li>Quick Fix &amp; Urgent Stitching</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">The Making</p>
+      <h2>Five fittings.<br>One garment.</h2>
+      <p>Nothing here is rushed. From first measure to final press, a single garment passes through five stages of hand work.</p>
+    </div>
+    <div class="process-track reveal" id="processTrack">
+      <div class="process-line"><div class="process-line-fill"></div></div>
+      <div class="process-steps">
+        <div class="step"><span class="step-num"></span><span class="mono">01</span><h3>Consultation</h3><p>We talk cloth, occasion, and silhouette before a tape ever comes out.</p></div>
+        <div class="step"><span class="step-num"></span><span class="mono">02</span><h3>Measure</h3><p>Thirty-two points taken by hand, recorded to the eighth of an inch.</p></div>
+        <div class="step"><span class="step-num"></span><span class="mono">03</span><h3>Cut</h3><p>A paper pattern is drafted and chalked directly onto your chosen cloth.</p></div>
+        <div class="step"><span class="step-num"></span><span class="mono">04</span><h3>Baste</h3><p>A loosely hand-sewn skeleton is fitted to your body and adjusted live.</p></div>
+        <div class="step"><span class="step-num"></span><span class="mono">05</span><h3>Finish</h3><p>Final stitching, pressing, and a last fitting before the garment is yours.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OFFERS ================= -->
+<section class="offers" id="offers">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Current Offers</p>
+      <h2>Worth booking now.</h2>
+    </div>
+    <div class="offers-grid reveal">
+      <div class="offer-card">
+        <span class="mono">MONSOON SPECIAL</span>
+        <h3>20% off custom suits</h3>
+        <p>On all custom suit orders — limited-time seasonal offer, ask in-store for current dates.</p>
+      </div>
+      <div class="offer-card">
+        <span class="mono">WEDDING PACKAGE</span>
+        <h3>Book 3 groomsmen outfits</h3>
+        <p>Outfit your groomsmen together and receive exciting gifts with the package.</p>
+      </div>
+      <div class="offer-card">
+        <span class="mono">FIRST-TIME CUSTOMER</span>
+        <h3>Flat ₹500 off</h3>
+        <p>On your first order above ₹5,000. Valid on your first visit to the workroom.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FABRICS ================= -->
+<section class="fabrics">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">The Cloth Library</p>
+      <h2>Suiting, sherwani<br>silk &amp; festive brocade.</h2>
+      <p>Sourced for every occasion — from featherweight tropical wool to heavy wedding-season brocade.</p>
+    </div>
+  </div>
+  <div class="fabric-grid reveal">
+    <div class="swatch"><div class="swatch-pattern p-pinstripe"></div><div class="swatch-info"><h4>Chalk Pinstripe</h4><span class="mono">260GSM · WOOL</span></div></div>
+    <div class="swatch"><div class="swatch-pattern p-herringbone"></div><div class="swatch-info"><h4>Donegal Herringbone</h4><span class="mono">340GSM · TWEED</span></div></div>
+    <div class="swatch"><div class="swatch-pattern p-houndstooth"></div><div class="swatch-info"><h4>Prince of Wales</h4><span class="mono">300GSM · WOOL</span></div></div>
+    <div class="swatch"><div class="swatch-pattern p-brocade"></div><div class="swatch-info"><h4>Wedding Brocade</h4><span class="mono">HAND-WOVEN · SILK</span></div></div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">From the Workroom</p>
+      <h2>Recent commissions.</h2>
+      <p>A small selection of garments cut and finished at NMT this season. Tap any piece for a closer look.</p>
+    </div>
+    <div class="photo-band reveal">
+      <figure>
+        <img src="https://images.unsplash.com/photo-1603394151492-5e9b974b090b?fm=jpg&q=80&w=1600&auto=format&fit=crop" alt="Man in a sharply tailored suit jacket and dress shirt">
+        <figcaption>Formal Suiting</figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1759906766080-82b785c61f51?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Groom dressed in traditional Indian wedding attire">
+        <figcaption>Wedding Attire</figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1546572797-e8c933a75a1f?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Man wearing a tailored black tuxedo jacket">
+        <figcaption>Blazers &amp; Formalwear</figcaption>
+      </figure>
+    </div>
+    <div class="gallery-filters reveal">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="suit">Coat Pant Suits</button>
+      <button class="filter-btn" data-filter="wedding">Wedding Attire</button>
+      <button class="filter-btn" data-filter="casual">Blazers &amp; Casual</button>
+    </div>
+  </div>
+  <div class="gallery-grid reveal" id="galleryGrid">
+    <div class="garment" data-category="suit" data-title="Coat Pant Suit, Single Breasted" data-tag="MEN'S TAILORING">
+      <svg viewBox="0 0 200 340"><path class="garment-line" d="M100,22 L72,30 L64,70 L80,66 L100,90 L120,66 L136,70 L128,30 Z"/><path class="garment-line" d="M64,70 L60,150 L140,150 L136,70"/><path class="garment-line" d="M64,72 L40,90 L36,150 L52,150 L60,95"/><path class="garment-line" d="M136,72 L160,90 L164,150 L148,150 L140,95"/><circle class="garment-line" cx="100" cy="100" r="2"/><circle class="garment-line" cx="100" cy="118" r="2"/><path class="garment-line" d="M66,128 L84,124 L86,132 L68,136 Z"/><path class="garment-line" d="M134,128 L116,124 L114,132 L132,136 Z"/><path class="garment-line" d="M62,152 L58,320 L82,320 L92,190 L100,190 L108,320 L142,320 L138,152"/><line class="garment-line" x1="58" y1="320" x2="82" y2="320"/><line class="garment-line" x1="108" y1="320" x2="142" y2="320"/></svg>
+      <div class="garment-cap"><h4>Coat Pant Suit</h4><span class="mono">SINGLE BREASTED</span></div>
+      <span class="garment-view">View full ↗</span>
+    </div>
+    <div class="garment" data-category="suit" data-title="Coat Pant Suit, Double Breasted" data-tag="MEN'S TAILORING">
+      <svg viewBox="0 0 200 340"><path class="garment-line" d="M100,22 L68,26 L58,66 L78,58 L100,88 L122,58 L142,66 L132,26 Z"/><path class="garment-line" d="M58,68 L54,150 L146,150 L142,68"/><path class="garment-line" d="M58,70 L34,88 L30,150 L46,150 L54,95"/><path class="garment-line" d="M142,70 L166,88 L170,150 L154,150 L146,95"/><circle class="garment-line" cx="88" cy="96" r="2"/><circle class="garment-line" cx="112" cy="96" r="2"/><circle class="garment-line" cx="88" cy="116" r="2"/><circle class="garment-line" cx="112" cy="116" r="2"/><path class="garment-line" d="M62,128 L82,124 L84,132 L64,136 Z"/><path class="garment-line" d="M138,128 L118,124 L116,132 L136,136 Z"/><path class="garment-line" d="M56,152 L52,320 L78,320 L90,190 L110,190 L122,320 L148,320 L144,152"/><line class="garment-line" x1="52" y1="320" x2="78" y2="320"/><line class="garment-line" x1="122" y1="320" x2="148" y2="320"/></svg>
+      <div class="garment-cap"><h4>Coat Pant Suit</h4><span class="mono">DOUBLE BREASTED</span></div>
+      <span class="garment-view">View full ↗</span>
+    </div>
+    <div class="garment" data-category="wedding" data-title="Bandhgala, Navy Twill" data-tag="FESTIVE WEAR">
+      <svg viewBox="0 0 120 150"><path class="garment-line" d="M40,15 L28,28 L20,60 L22,130 L45,136 L45,55 L52,45 L68,45 L75,55 L75,136 L98,130 L100,60 L92,28 L80,15 L68,22 L60,18 L52,22 Z"/></svg>
+      <div class="garment-cap"><h4>Bandhgala, Navy Twill</h4><span class="mono">FESTIVE WEAR</span></div>
+      <span class="garment-view">View full ↗</span>
+    </div>
+    <div class="garment" data-category="wedding" data-title="Sherwani, Ivory Silk" data-tag="WEDDING ATTIRE">
+      <svg viewBox="0 0 120 150"><path class="garment-line" d="M60,10 C42,10 30,22 28,45 L26,140 L48,140 L48,55 L48,50 L72,50 L72,140 L94,140 L92,45 C90,22 78,10 60,10 Z M40,55 L40,100 M80,55 L80,100"/></svg>
+      <div class="garment-cap"><h4>Sherwani, Ivory Silk</h4><span class="mono">WEDDING ATTIRE</span></div>
+      <span class="garment-view">View full ↗</span>
+    </div>
+    <div class="garment" data-category="casual" data-title="Waistcoat, Burgundy Silk" data-tag="SIX-BUTTON">
+      <svg viewBox="0 0 120 150"><path class="garment-line" d="M35,20 L60,10 L85,20 L85,45 L65,40 L65,140 L55,140 L55,40 L35,45 Z"/></svg>
+      <div class="garment-cap"><h4>Waistcoat, Burgundy Silk</h4><span class="mono">SIX-BUTTON</span></div>
+      <span class="garment-view">View full ↗</span>
+    </div>
+    <div class="garment" data-category="casual" data-title="Blazer, Notch Lapel" data-tag="CASUAL & OFFICE">
+      <svg viewBox="0 0 200 170"><path class="garment-line" d="M100,22 L72,30 L64,70 L80,66 L100,90 L120,66 L136,70 L128,30 Z"/><path class="garment-line" d="M64,70 L60,150 L140,150 L136,70"/><path class="garment-line" d="M64,72 L40,90 L36,150 L52,150 L60,95"/><path class="garment-line" d="M136,72 L160,90 L164,150 L148,150 L140,95"/><circle class="garment-line" cx="100" cy="100" r="2"/><circle class="garment-line" cx="100" cy="118" r="2"/><path class="garment-line" d="M66,128 L84,124 L86,132 L68,136 Z"/><path class="garment-line" d="M134,128 L116,124 L114,132 L132,136 Z"/></svg>
+      <div class="garment-cap"><h4>Blazer, Notch Lapel</h4><span class="mono">CASUAL &amp; OFFICE</span></div>
+      <span class="garment-view">View full ↗</span>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+    <div class="lightbox-art" id="lightboxArt"></div>
+    <div class="lightbox-cap">
+      <h3 id="lightboxTitle"></h3>
+      <span class="mono" id="lightboxTag"></span>
+    </div>
+  </div>
+</div>
+
+<!-- ================= REVIEWS ================= -->
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Client Reviews</p>
+      <h2>Worn, not just owned.</h2>
+    </div>
+
+    <div class="review-summary reveal">
+      <div class="review-score">
+        <span class="score-num" id="avgScore">4.8</span>
+      </div>
+      <div>
+        <div class="stars" id="avgStars">★★★★★</div>
+        <span class="mono">BASED ON <span id="reviewCount">3</span> REVIEWS</span>
+      </div>
+    </div>
+
+    <div class="review-list reveal" id="reviewList">
+      <div class="review-card" data-rating="5">
+        <div class="review-head"><span class="stars">★★★★★</span><span class="mono">V. KUMAR · BAHALGARH</span></div>
+        <p>Got my sherwani stitched for my brother's wedding — the fit was perfect on the first try.</p>
+      </div>
+      <div class="review-card" data-rating="5">
+        <div class="review-head"><span class="stars">★★★★★</span><span class="mono">A. SHARMA · SONIPAT</span></div>
+        <p>Five fittings sounded excessive until I saw the difference between the third and the fifth.</p>
+      </div>
+      <div class="review-card" data-rating="4">
+        <div class="review-head"><span class="stars">★★★★☆</span><span class="mono">D. SINGH · LONG-TIME CLIENT</span></div>
+        <p>Been going to NMT since before I can remember. My father used to bring me here for his coat pant suits.</p>
+      </div>
+    </div>
+
+    <div class="review-form-wrap reveal">
+      <h3>Write a review</h3>
+      <form id="reviewForm">
+        <div class="form-row">
+          <div class="field">
+            <label for="revName">Your name</label>
+            <input type="text" id="revName" required>
+          </div>
+          <div class="field">
+            <label>Rating</label>
+            <div class="star-select" id="starSelect" data-rating="0">
+              <span data-val="1">★</span><span data-val="2">★</span><span data-val="3">★</span><span data-val="4">★</span><span data-val="5">★</span>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="revText">Your review</label>
+          <textarea id="revText" required placeholder="Tell us about your fitting…"></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Submit Review</button>
+        <p class="form-confirm" id="reviewConfirm">Thank you — your review has been added below.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LOCATION ================= -->
+<section class="location" id="location">
+  <div class="wrap reveal">
+    <div class="location-details">
+      <p class="eyebrow">Store Location</p>
+      <h2 style="margin-top:0.6rem;">Visit the workroom.</h2>
+      <dl>
+        <dt>Address</dt><dd>NMT — New Men's Tailors, Bahalgarh, Sonipat, Haryana – 131021</dd>
+        <dt>Hours</dt><dd>Monday to Sunday, 8:00AM – 9:30PM</dd>
+        <dt>Phone</dt><dd><a href="tel:+919671357519">+91 96713 57519</a></dd>
+        <dt>Directions</dt><dd><a href="https://www.google.com/maps/place/NEW+MEN%27S+TAILORS+(NMT)/@28.959534,77.0800505,14.51z/data=!4m6!3m5!1s0x390daf3d1494089d:0x43fe1fb236462bc3!8m2!3d28.9585617!4d77.0936856!16s%2Fg%2F11rfrsrrr0?entry=ttu" target="_blank" rel="noopener">View on Google Maps →</a></dd>
+      </dl>
+      <div class="call-strip">
+        <div><span class="mono-lbl">Call to book</span><a href="tel:+919671357519">+91 96713 57519</a></div>
+      </div>
+    </div>
+    <div class="map-frame">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3514.6318916700235!2d77.09109617535469!3d28.95856167624016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390daf3d1494089d%3A0x43fe1fb236462bc3!2sNEW%20MEN'S%20TAILORS%20(NMT)!5e0!3m2!1sen!2sin!4v1719477163555!5m2!1sen!2sin" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="NMT Store Location"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BOOK ================= -->
+<section class="book" id="book">
+  <div class="wrap reveal">
+    <div>
+      <p class="eyebrow">Book a Fitting</p>
+      <h2>Begin with a conversation.</h2>
+      <p style="color:var(--chalk-dim); margin-top:1rem; max-width:38ch;">First consultations carry no obligation. Bring reference garments or fabric ideas if you have them.</p>
+      <dl class="location-details" style="margin-top:1.6rem;">
+        <dt>Workroom</dt><dd>Bahalgarh, Sonipat, Haryana – 131021</dd>
+        <dt>Hours</dt><dd>Monday to Sunday, 8:00AM – 9:30PM</dd>
+      </dl>
+    </div>
+    <form id="bookingForm">
+      <div class="form-row">
+        <div class="field"><label for="name">Full name</label><input type="text" id="name" required></div>
+        <div class="field"><label for="phone">Phone</label><input type="tel" id="phone" required></div>
+      </div>
+      <div class="field">
+        <label for="garment">Garment of interest</label>
+        <select id="garment">
+          <option>Formal Suit (2 or 3-piece)</option>
+          <option>Sherwani / Wedding Attire</option>
+          <option>Bandhgala / Indo-Western</option>
+          <option>Blazer / Waistcoat</option>
+          <option>Alteration &amp; Custom Fit</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="notes">Notes (optional)</label>
+        <textarea id="notes" placeholder="Occasion, timeline, fabric preferences…"></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Request Consultation</button>
+      <p class="form-confirm" id="formConfirm">Noted — we'll call to confirm a time within one business day.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="logo-mark" style="margin-bottom:1rem;"><span class="initials">N<em>M</em>T</span></div>
+      <p>NMT Limited, New Men's Tailors<br>Bahalgarh, Sonipat, Haryana – 131021</p>
+      <div class="footer-social">
+        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+        <a href="https://www.instagram.com/newmenstailors/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+        <a href="tel:+919671357519" aria-label="Call">☎</a>
+      </div>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <a href="#about">About Us</a>
+      <a href="#services">Our Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#location">Our Store</a>
+      <a href="#book">Book a Fitting</a>
+    </div>
+    <div>
+      <h4>Get in Touch</h4>
+      <a href="tel:+919671357519">📞 +91 96713 57519</a>
+      <p>🕒 Mon – Sun, 8:00AM – 9:30PM</p>
+    </div>
+    <div>
+      <h4>Visit</h4>
+      <p>Bahalgarh (131021)<br>Sonipat, Haryana, India</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="mono">© 2026 NMT | NEW MEN'S TAILORS. ALL RIGHTS RESERVED.</p>
+    <p class="mono">SINCE 1998</p>
+  </div>
+</footer>
+
+<div class="float-actions">
+  <a class="float-btn float-whatsapp" id="whatsappBtn" href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.82L2 22l5.42-1.42a9.86 9.86 0 0 0 4.62 1.18h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 1.67c2.19 0 4.24.85 5.79 2.4a8.2 8.2 0 0 1 2.41 5.84c0 4.55-3.7 8.24-8.25 8.24a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.02.79.8-2.94-.2-.31a8.17 8.17 0 0 1-1.26-4.4c0-4.55 3.7-8.29 8.22-8.29Zm-3.4 4.16c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.02s.87 2.34.99 2.5c.12.16 1.68 2.68 4.16 3.65 2.06.81 2.48.65 2.93.61.45-.04 1.44-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28-.24-.12-1.44-.71-1.66-.79-.22-.08-.39-.12-.55.12-.16.24-.63.79-.78.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.34-.76-1.83-.2-.48-.4-.42-.55-.42Z"/></svg>
+  </a>
+  <a class="float-btn float-call" href="tel:+919671357519" aria-label="Call NMT" id="callBtn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13 1 .36 1.98.68 2.93a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.15-1.15a2 2 0 0 1 2.11-.45c.95.32 1.93.55 2.93.68A2 2 0 0 1 22 16.92Z"/></svg>
+  </a>
+</div>
+
+<!-- Firebase (compat SDK — replace FIREBASE_CONFIG below with your own project) -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<!-- EmailJS (client-side email sending — replace EMAILJS_* below with your own account) -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+  // ============================================================================
+  // CONFIGURATION — fill these in with your own project keys before going live.
+  // Nothing below will break the site if left as-is; it just runs without
+  // saving to a backend or sending emails until you connect real accounts.
+  // ============================================================================
+
+  // 1) Firebase — create a free project at https://console.firebase.google.com,
+  //    enable Firestore Database (start in production mode), then copy your
+  //    web app config from Project Settings → General → Your apps.
+  const FIREBASE_CONFIG = {
+    apiKey: "YOUR_FIREBASE_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  // 2) EmailJS — create a free account at https://www.emailjs.com, connect an
+  //    email service (e.g. Gmail), create a template, and copy the three IDs
+  //    below from the EmailJS dashboard. This sends the booking notification
+  //    straight to your inbox with no server required.
+  const EMAILJS_PUBLIC_KEY = "YOUR_EMAILJS_PUBLIC_KEY";
+  const EMAILJS_SERVICE_ID = "YOUR_EMAILJS_SERVICE_ID";
+  const EMAILJS_TEMPLATE_ID = "YOUR_EMAILJS_TEMPLATE_ID";
+  const SHOP_NOTIFY_EMAIL = "owner@example.com"; // where booking requests are sent
+
+  // 3) Call / WhatsApp — the shop's WhatsApp-enabled number, digits only,
+  //    with country code (no + or spaces).
+  const SHOP_WHATSAPP_NUMBER = "919671357519";
+  const SHOP_PHONE_DISPLAY = "+91 96713 57519";
+
+  // ---- Initialization (safe no-ops until the placeholders above are filled) ----
+  const firebaseReady = FIREBASE_CONFIG.apiKey && !FIREBASE_CONFIG.apiKey.startsWith("YOUR_");
+  let db = null;
+  if (firebaseReady) {
+    try {
+      firebase.initializeApp(FIREBASE_CONFIG);
+      db = firebase.firestore();
+    } catch (err) {
+      console.warn('Firebase failed to initialize:', err);
+    }
+  } else {
+    console.info('Firebase not configured — bookings and reviews will only be shown in this browser session. Add your FIREBASE_CONFIG to persist them.');
+  }
+
+  const emailjsReady = EMAILJS_PUBLIC_KEY && !EMAILJS_PUBLIC_KEY.startsWith("YOUR_");
+  if (emailjsReady) {
+    try { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); }
+    catch (err) { console.warn('EmailJS failed to initialize:', err); }
+  } else {
+    console.info('EmailJS not configured — booking requests will not send an email. Add your EMAILJS_* keys to enable it.');
+  }
+
+
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 40); });
+
+  const menuToggle = document.getElementById('menuToggle');
+  const navList = document.getElementById('navList');
+  menuToggle.addEventListener('click', () => {
+    navList.classList.toggle('nav-open');
+  });
+
+  const themeToggle = document.getElementById('themeToggle');
+  themeToggle.addEventListener('click', () => {
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    document.documentElement.setAttribute('data-theme', isLight ? 'dark' : 'light');
+  });
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('in'); revealObserver.unobserve(entry.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  const processTrack = document.getElementById('processTrack');
+  const processObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('in'); processObserver.unobserve(entry.target); } });
+  }, { threshold: 0.3 });
+  processObserver.observe(processTrack);
+
+  const form = document.getElementById('bookingForm');
+  const confirm = document.getElementById('formConfirm');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const submitBtn = form.querySelector('.btn-submit');
+    const booking = {
+      name: document.getElementById('name').value.trim(),
+      phone: document.getElementById('phone').value.trim(),
+      garment: document.getElementById('garment').value,
+      notes: document.getElementById('notes').value.trim(),
+      createdAt: firebaseReady && firebase.firestore.FieldValue
+        ? firebase.firestore.FieldValue.serverTimestamp()
+        : new Date().toISOString()
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    // Save to Firestore, if configured
+    if (firebaseReady && db) {
+      try {
+        await db.collection('bookings').add(booking);
+      } catch (err) {
+        console.error('Could not save booking to Firestore:', err);
+      }
+    }
+
+    // Email the shop owner via EmailJS, if configured
+    if (emailjsReady) {
+      try {
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+          to_email: SHOP_NOTIFY_EMAIL,
+          from_name: booking.name,
+          phone: booking.phone,
+          garment: booking.garment,
+          notes: booking.notes || '—'
+        });
+      } catch (err) {
+        console.error('Could not send booking email:', err);
+      }
+    }
+
+    confirm.classList.add('show');
+    submitBtn.textContent = 'Request Sent';
+    setTimeout(() => { form.reset(); submitBtn.disabled = false; submitBtn.textContent = 'Request Consultation'; confirm.classList.remove('show'); }, 4000);
+  });
+
+  // Coat-pant suit carousel — one slow, single crossfade, paused if reduced motion is preferred
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReducedMotion) {
+    const slides = document.querySelectorAll('#coatCarousel .coat-slide');
+    let activeIndex = 0;
+    if (slides.length > 1) {
+      setInterval(() => {
+        slides[activeIndex].classList.remove('active');
+        activeIndex = (activeIndex + 1) % slides.length;
+        slides[activeIndex].classList.add('active');
+      }, 6000);
+    }
+  }
+
+  // Gallery filters
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const garments = document.querySelectorAll('#galleryGrid .garment');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      garments.forEach(g => {
+        g.classList.toggle('hidden', filter !== 'all' && g.dataset.category !== filter);
+      });
+    });
+  });
+
+  // Gallery lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxArt = document.getElementById('lightboxArt');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const lightboxTag = document.getElementById('lightboxTag');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  garments.forEach(g => {
+    g.addEventListener('click', () => {
+      const svg = g.querySelector('svg');
+      lightboxArt.innerHTML = svg ? svg.outerHTML : '';
+      lightboxTitle.textContent = g.dataset.title || '';
+      lightboxTag.textContent = g.dataset.tag || '';
+      lightbox.classList.add('open');
+    });
+  });
+  function closeLightbox(){ lightbox.classList.remove('open'); }
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
+  // Review star selector
+  const starSelect = document.getElementById('starSelect');
+  const starEls = starSelect.querySelectorAll('span');
+  starEls.forEach(star => {
+    star.addEventListener('click', () => {
+      const val = parseInt(star.dataset.val, 10);
+      starSelect.dataset.rating = val;
+      starEls.forEach(s => s.classList.toggle('filled', parseInt(s.dataset.val, 10) <= val));
+    });
+  });
+
+  // Review submission — saved to Firestore when configured, otherwise stays
+  // session-only (visible in this browser tab until it's closed/reloaded).
+  const reviewForm = document.getElementById('reviewForm');
+  const reviewList = document.getElementById('reviewList');
+  const reviewConfirm = document.getElementById('reviewConfirm');
+  const avgScoreEl = document.getElementById('avgScore');
+  const avgStarsEl = document.getElementById('avgStars');
+  const reviewCountEl = document.getElementById('reviewCount');
+
+  function starString(n){ return '★'.repeat(n) + '☆'.repeat(5 - n); }
+
+  function recalcAverage(){
+    const cards = reviewList.querySelectorAll('.review-card');
+    let total = 0;
+    cards.forEach(c => total += parseInt(c.dataset.rating, 10));
+    const avg = cards.length ? total / cards.length : 0;
+    avgScoreEl.textContent = avg.toFixed(1);
+    avgStarsEl.textContent = starString(Math.round(avg));
+    reviewCountEl.textContent = cards.length;
+  }
+
+  function buildReviewCard(name, rating, text){
+    const card = document.createElement('div');
+    card.className = 'review-card';
+    card.dataset.rating = rating;
+    card.innerHTML = `<div class="review-head"><span class="stars">${starString(rating)}</span><span class="mono"></span></div><p></p>`;
+    card.querySelector('.mono').textContent = name.toUpperCase();
+    card.querySelector('p').textContent = text;
+    return card;
+  }
+
+  // Load previously-saved reviews from Firestore (newest first) and place
+  // them ahead of the three seed reviews already in the markup.
+  async function loadReviewsFromFirestore(){
+    if (!(firebaseReady && db)) return;
+    try {
+      const snap = await db.collection('reviews').orderBy('createdAt', 'desc').limit(20).get();
+      snap.forEach(doc => {
+        const r = doc.data();
+        if (r && r.name && r.text && r.rating) {
+          reviewList.prepend(buildReviewCard(r.name, r.rating, r.text));
+        }
+      });
+      recalcAverage();
+    } catch (err) {
+      console.warn('Could not load reviews from Firestore:', err);
+    }
+  }
+  loadReviewsFromFirestore();
+
+  reviewForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('revName').value.trim();
+    const text = document.getElementById('revText').value.trim();
+    const rating = parseInt(starSelect.dataset.rating, 10) || 5;
+    if (!name || !text) return;
+
+    reviewList.prepend(buildReviewCard(name, rating, text));
+    recalcAverage();
+
+    if (firebaseReady && db) {
+      try {
+        await db.collection('reviews').add({
+          name, rating, text,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+      } catch (err) {
+        console.error('Could not save review to Firestore:', err);
+      }
+    }
+
+    reviewForm.reset();
+    starSelect.dataset.rating = '0';
+    starEls.forEach(s => s.classList.remove('filled'));
+    reviewConfirm.classList.add('show');
+    setTimeout(() => reviewConfirm.classList.remove('show'), 4000);
+  });
+
+  // Floating call / WhatsApp actions
+  const whatsappBtn = document.getElementById('whatsappBtn');
+  const waMessage = encodeURIComponent("Hi NMT, I'd like to ask about booking a fitting.");
+  whatsappBtn.href = `https://wa.me/${SHOP_WHATSAPP_NUMBER}?text=${waMessage}`;
+
+  function logContactClick(type){
+    if (!(firebaseReady && db)) return;
+    db.collection('contactClicks').add({
+      type,
+      at: firebase.firestore.FieldValue.serverTimestamp()
+    }).catch(err => console.warn('Could not log contact click:', err));
+  }
+  document.getElementById('callBtn').addEventListener('click', () => logContactClick('call'));
+  whatsappBtn.addEventListener('click', () => logContactClick('whatsapp'));
+
+</script>
+
+</body>
+</html>
