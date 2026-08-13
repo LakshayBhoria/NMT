@@ -870,6 +870,7 @@
         <div class="field"><label for="name">Full name</label><input type="text" id="name" required></div>
         <div class="field"><label for="phone">Phone</label><input type="tel" id="phone" required></div>
       </div>
+      <div class="field"><label for="email">Email</label><input type="email" id="email" required placeholder="For your booking confirmation"></div>
       <div class="field">
         <label for="garment">Garment of interest</label>
         <select id="garment">
@@ -921,7 +922,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="mono">© 2026 NMT | NEW MEN'S TAILORS. ALL RIGHTS RESERVED.                      Designed and developed by "www.thinkorix.in"</p>
+    <p class="mono">© 2026 NMT | NEW MEN'S TAILORS. ALL RIGHTS RESERVED.</p>
     <p class="mono">SINCE 1998</p>
   </div>
 </footer>
@@ -951,17 +952,14 @@
   // 1) Firebase — create a free project at https://console.firebase.google.com,
   //    enable Firestore Database (start in production mode), then copy your
   //    web app config from Project Settings → General → Your apps.
-  
-    
-const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyDa6dzJDkgygi08-XQqddWRkXOS1k3NNlQ",
-  authDomain: "nmt-website-260ef.firebaseapp.com",
-  projectId: "nmt-website-260ef",
-  storageBucket: "nmt-website-260ef.firebasestorage.app",
-  messagingSenderId: "300091302907",
-  appId: "1:300091302907:web:2abbea6c7430e5c49f215e",
-  measurementId: "G-0J6LFRNGCY"
-};
+  const FIREBASE_CONFIG = {
+    apiKey: "AIzaSyDa6dzJDkgygi08-XQqddWRkXOS1k3NNlQ",
+    authDomain: "nmt-website-260ef.firebaseapp.com",
+    projectId: "nmt-website-260ef",
+    storageBucket: "nmt-website-260ef.firebasestorage.app",
+    messagingSenderId: "300091302907",
+    appId: "1:300091302907:web:2abbea6c7430e5c49f215e"
+  };
 
   // 2) EmailJS — create a free account at https://www.emailjs.com, connect an
   //    email service (e.g. Gmail), create a template, and copy the three IDs
@@ -971,6 +969,12 @@ const FIREBASE_CONFIG = {
   const EMAILJS_SERVICE_ID = "service_coauf1d";
   const EMAILJS_TEMPLATE_ID = "template_8gnsdxu";
   const SHOP_NOTIFY_EMAIL = "ratansingh98700@gmail.com"; // where booking requests are sent
+
+  // 2b) Customer confirmation — create a SECOND template in EmailJS (e.g.
+  //     "Thanks for contacting NMT") with fields {{to_email}}, {{to_name}},
+  //     {{garment}}, then paste its Template ID below. Uses the same
+  //     service/public key as above. Leave as-is to skip customer emails.
+  const CUSTOMER_CONFIRM_TEMPLATE_ID = "template_mqeq5qb";
 
   // 3) Call / WhatsApp — the shop's WhatsApp-enabled number, digits only,
   //    with country code (no + or spaces).
@@ -998,6 +1002,8 @@ const FIREBASE_CONFIG = {
   } else {
     console.info('EmailJS not configured — booking requests will not send an email. Add your EMAILJS_* keys to enable it.');
   }
+
+  const customerConfirmReady = emailjsReady && CUSTOMER_CONFIRM_TEMPLATE_ID && !CUSTOMER_CONFIRM_TEMPLATE_ID.startsWith("YOUR_");
 
 
   const header = document.getElementById('siteHeader');
@@ -1035,6 +1041,7 @@ const FIREBASE_CONFIG = {
     const booking = {
       name: document.getElementById('name').value.trim(),
       phone: document.getElementById('phone').value.trim(),
+      email: document.getElementById('email').value.trim(),
       garment: document.getElementById('garment').value,
       notes: document.getElementById('notes').value.trim(),
       createdAt: firebaseReady && firebase.firestore.FieldValue
@@ -1066,6 +1073,19 @@ const FIREBASE_CONFIG = {
         });
       } catch (err) {
         console.error('Could not send booking email:', err);
+      }
+    }
+
+    // Send a "thanks for contacting us" confirmation to the customer, if configured
+    if (customerConfirmReady && booking.email) {
+      try {
+        await emailjs.send(EMAILJS_SERVICE_ID, CUSTOMER_CONFIRM_TEMPLATE_ID, {
+          to_email: booking.email,
+          to_name: booking.name,
+          garment: booking.garment
+        });
+      } catch (err) {
+        console.error('Could not send customer confirmation email:', err);
       }
     }
 
